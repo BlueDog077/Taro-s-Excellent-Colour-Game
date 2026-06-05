@@ -53,23 +53,31 @@ namespace MathLibrary
 
 	void Application::BeginPlay()
 	{
+		
+
 		//Setting up default values for the vial
 		m_vial = LoadTexture("Resources/Vial.png");
 		m_vialCount = 5;
 
+
 		//Loading Taro stuff
 		m_taroSprite = LoadTexture("Resources/TaroBallNormal.png");
-		m_taroMaxCount = 16;
+		m_taroMaxCount = 15;
 
 		m_taroXPos = 13;
 		m_taroYPos = 120;
+
+		for (int i = 0; i < m_vialCount; i++)
+		{
+			m_vialList.emplace_back(&m_vial);
+		}
 	
 	}
 
 	void Application::Tick(float dt)
 	{
-
-		for (size_t i = m_currentTaro.size(); i < m_taroMaxCount - m_vialCount; i++)
+		
+		for (size_t i = m_currentTaro.size(); i < m_taroMaxCount; i++)
 		{
 			std::vector<TaroColor> randomColor =
 			{
@@ -91,9 +99,12 @@ namespace MathLibrary
 				BaseTaro* taro = new BaseTaro{ m_taroXPos + static_cast<float>(i) * 100, m_taroYPos, chosenColor, m_taroSprite };
 				m_taroStack.Push(taro);
 				m_currentTaro.emplace_back(taro);
+
 			}
 			if (m_currentTaro.size() >= 5 && m_currentTaro.size() <= 10)
 			{
+				std::cout << m_vialList.size();
+
 				m_taroXPos = 13;
 				m_taroYPos = 60;
 
@@ -106,6 +117,8 @@ namespace MathLibrary
 				m_taroXPos = 13;
 				m_taroYPos = 0;
 
+		
+
 				BaseTaro* taro = new BaseTaro{ m_taroXPos + static_cast<float>(i - 10) * 100, m_taroYPos, chosenColor, m_taroSprite };
 				m_taroStack.Push(taro);
 				m_currentTaro.emplace_back(taro);
@@ -117,9 +130,11 @@ namespace MathLibrary
 
 	void Application::Render()
 	{
-		for (int i = 0; i < m_vialCount; i++)
+		float xOffset = 10.0f;
+		for (const auto &vial : m_vialList)
 		{
-			DrawTextureV(m_vial, { (10 + static_cast<float>(i) * 100), -50}, WHITE);
+			DrawTextureV(*vial, { xOffset, -50.0f }, WHITE);
+			xOffset += 100.0f; // Move to the next position
 		}
 
 		for (size_t i = 0; i < m_currentTaro.size(); i++)

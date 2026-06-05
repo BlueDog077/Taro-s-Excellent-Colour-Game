@@ -27,8 +27,9 @@ namespace MathLibrary
 		bool m_running;
 		Color m_clearColor;
 
-		int m_vialCount;
 		Texture2D m_vial;
+		int m_vialCount;
+		vector<Texture2D*> m_vialList;
 
 		//Taro
 		Texture2D m_taroSprite;

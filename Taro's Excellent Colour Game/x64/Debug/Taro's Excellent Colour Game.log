@@ -1,7 +1,7 @@
 ﻿  Application.cpp
-C:\Users\s251412\Documents\git\Taro-s-Excellent-Colour-Game\Taro's Excellent Colour Game\Application.cpp(85,88): warning C4267: 'argument': conversion from 'size_t' to '_Ty', possible loss of data
-C:\Users\s251412\Documents\git\Taro-s-Excellent-Colour-Game\Taro's Excellent Colour Game\Application.cpp(85,88): warning C4267:         with
-C:\Users\s251412\Documents\git\Taro-s-Excellent-Colour-Game\Taro's Excellent Colour Game\Application.cpp(85,88): warning C4267:         [
-C:\Users\s251412\Documents\git\Taro-s-Excellent-Colour-Game\Taro's Excellent Colour Game\Application.cpp(85,88): warning C4267:             _Ty=unsigned int
-C:\Users\s251412\Documents\git\Taro-s-Excellent-Colour-Game\Taro's Excellent Colour Game\Application.cpp(85,88): warning C4267:         ]
+C:\Users\s251412\Documents\git\Taro-s-Excellent-Colour-Game\Taro's Excellent Colour Game\Application.cpp(93,88): warning C4267: 'argument': conversion from 'size_t' to '_Ty', possible loss of data
+C:\Users\s251412\Documents\git\Taro-s-Excellent-Colour-Game\Taro's Excellent Colour Game\Application.cpp(93,88): warning C4267:         with
+C:\Users\s251412\Documents\git\Taro-s-Excellent-Colour-Game\Taro's Excellent Colour Game\Application.cpp(93,88): warning C4267:         [
+C:\Users\s251412\Documents\git\Taro-s-Excellent-Colour-Game\Taro's Excellent Colour Game\Application.cpp(93,88): warning C4267:             _Ty=unsigned int
+C:\Users\s251412\Documents\git\Taro-s-Excellent-Colour-Game\Taro's Excellent Colour Game\Application.cpp(93,88): warning C4267:         ]
   Taro's Excellent Colour Game.vcxproj -> C:\Users\s251412\Documents\git\Taro-s-Excellent-Colour-Game\Debug\Taro's Excellent Colour Game.exe
