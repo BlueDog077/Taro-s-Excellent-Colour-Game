@@ -1,5 +1,6 @@
 #pragma once
 #include <raylib.h>
+#include "Stack.h"
 #include <vector>
 
 using std::vector;
@@ -33,6 +34,12 @@ namespace MathLibrary
 		Texture2D m_taroSprite;
 		int m_taroMaxCount;
 		vector<BaseTaro*> m_currentTaro;
+
+		float m_taroXPos;
+		float m_taroYPos;
+
+		//Stack
+		Stack<BaseTaro*> m_taroStack;
 
 
 	private:

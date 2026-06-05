@@ -60,11 +60,16 @@ namespace MathLibrary
 		//Loading Taro stuff
 		m_taroSprite = LoadTexture("Resources/TaroBallNormal.png");
 		m_taroMaxCount = 16;
+
+		m_taroXPos = 13;
+		m_taroYPos = 120;
+	
 	}
 
 	void Application::Tick(float dt)
 	{
-		for (size_t i = m_currentTaro.size(); i < 5; i++)
+
+		for (size_t i = m_currentTaro.size(); i < 15; i++)
 		{
 			std::vector<TaroColor> randomColor =
 			{
@@ -77,15 +82,38 @@ namespace MathLibrary
 			 static  std::random_device img;
 			 static std::mt19937 rng(img());
 
-
 			std::uniform_int_distribution<std::mt19937::result_type> dist(0, randomColor.size() - 1);
-
 			TaroColor chosenColor = randomColor[dist(rng)];
 
-			BaseTaro* taro = new BaseTaro { 13 + static_cast<float>(i) * 100, 120, chosenColor, m_taroSprite };
-			m_currentTaro.emplace_back(taro);
-		}
+			// Moving the taro's
+			if (m_currentTaro.size() < 5)
+			{
+				BaseTaro* taro = new BaseTaro{ m_taroXPos + static_cast<float>(i) * 100, m_taroYPos, chosenColor, m_taroSprite };
+				m_taroStack.Push(taro);
+				m_currentTaro.emplace_back(taro);
+			}
+			if (m_currentTaro.size() >= 5 && m_currentTaro.size() <= 10)
+			{
+				m_taroXPos = 13;
+				m_taroYPos = 60;
+
+				BaseTaro* taro = new BaseTaro{ m_taroXPos + static_cast<float>(i - 5) * 100, m_taroYPos, chosenColor, m_taroSprite };
+				m_taroStack.Push(taro);
+				m_currentTaro.emplace_back(taro);
+			}
+			if (m_currentTaro.size() > 10)
+			{
+				m_taroXPos = 13;
+				m_taroYPos = 0;
+
+				BaseTaro* taro = new BaseTaro{ m_taroXPos + static_cast<float>(i - 10) * 100, m_taroYPos, chosenColor, m_taroSprite };
+				m_taroStack.Push(taro);
+				m_currentTaro.emplace_back(taro);
+			}
 		
+		
+			
+		}
 
 	}
 
@@ -100,12 +128,10 @@ namespace MathLibrary
 		{
 			m_currentTaro[i]->DrawSprite();
 		}
-
 	}
 
 	void Application::EndPlay()
 	{
-
 		m_currentTaro.clear();
 	}
 }
