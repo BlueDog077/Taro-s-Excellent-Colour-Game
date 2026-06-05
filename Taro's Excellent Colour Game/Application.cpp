@@ -1,4 +1,5 @@
 #include "Application.h"
+#include "BaseTaro.h"
 
 #include <raylib.h>
 
@@ -48,8 +49,13 @@ namespace MathLibrary
 
 	void Application::BeginPlay()
 	{
+		//Setting up default values for the vial
 		m_vial = LoadTexture("Resources/Vial.png");
 		m_vialCount = 5;
+
+		//Loading Taro sprites
+		m_taroSprite = LoadTexture("Resources/TaroBallNormal.png");
+	
 
 	}
 
@@ -62,6 +68,9 @@ namespace MathLibrary
 		{
 			DrawTextureV(m_vial, { (10 + static_cast<float>(i) * 100), -50}, WHITE);
 		}
+
+		BaseTaro* taro = new BaseTaro{ 100, 100, TaroColor::Green, m_taroSprite};
+		taro->DrawSprite();
 	
 	}
 

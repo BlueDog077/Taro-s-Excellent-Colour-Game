@@ -24,6 +24,9 @@ namespace MathLibrary
 		int m_vialCount;
 		Texture2D m_vial;
 
+		Texture2D m_taroSprite;
+
+
 	private:
 		void BeginPlay();
 
