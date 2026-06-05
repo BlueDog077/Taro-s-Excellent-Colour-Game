@@ -1,8 +1,13 @@
 #pragma once
 #include <raylib.h>
+#include <vector>
 
+using std::vector;
+
+class BaseTaro;
 namespace MathLibrary
 {
+
 	class Application
 	{
 	public:
@@ -24,7 +29,10 @@ namespace MathLibrary
 		int m_vialCount;
 		Texture2D m_vial;
 
+		//Taro
 		Texture2D m_taroSprite;
+		int m_taroMaxCount;
+		vector<BaseTaro*> m_currentTaro;
 
 
 	private:

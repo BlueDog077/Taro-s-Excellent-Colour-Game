@@ -40,16 +40,7 @@
     <Image Include="Resources\Vial.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\TaroBallBlue.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\TaroBallGreen.png">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="Resources\TaroBallNormal.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\TaroBallRed.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

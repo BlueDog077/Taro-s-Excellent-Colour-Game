@@ -1,5 +1,6 @@
 #pragma once
 #include <raylib.h>
+#include <vector>
 
 enum class TaroColor
 {
@@ -19,10 +20,11 @@ public:
 	void DrawSprite() const;
 
 private:
-	//need to store enum for color, size, x, and y.
 	Vector2 m_location;
 	TaroColor m_taroColorIndex;
 	Texture2D m_taroSprite;
+
+	
 };
 
 

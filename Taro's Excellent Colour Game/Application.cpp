@@ -1,7 +1,11 @@
 #include "Application.h"
-#include "BaseTaro.h"
 
+#include "BaseTaro.h"
+#include <iostream>
 #include <raylib.h>
+#include <vector>
+#include <random>
+
 
 namespace MathLibrary
 {
@@ -53,14 +57,37 @@ namespace MathLibrary
 		m_vial = LoadTexture("Resources/Vial.png");
 		m_vialCount = 5;
 
-		//Loading Taro sprites
+		//Loading Taro stuff
 		m_taroSprite = LoadTexture("Resources/TaroBallNormal.png");
-	
-
+		m_taroMaxCount = 16;
 	}
 
 	void Application::Tick(float dt)
-	{}
+	{
+		for (size_t i = m_currentTaro.size(); i < 5; i++)
+		{
+			std::vector<TaroColor> randomColor =
+			{
+				TaroColor::Red,
+				TaroColor::Yellow, 
+				TaroColor::Blue,
+				TaroColor::Green
+			};
+
+			 static  std::random_device img;
+			 static std::mt19937 rng(img());
+
+
+			std::uniform_int_distribution<std::mt19937::result_type> dist(0, randomColor.size() - 1);
+
+			TaroColor chosenColor = randomColor[dist(rng)];
+
+			BaseTaro* taro = new BaseTaro { 13 + static_cast<float>(i) * 100, 120, chosenColor, m_taroSprite };
+			m_currentTaro.emplace_back(taro);
+		}
+		
+
+	}
 
 	void Application::Render()
 	{
@@ -69,11 +96,16 @@ namespace MathLibrary
 			DrawTextureV(m_vial, { (10 + static_cast<float>(i) * 100), -50}, WHITE);
 		}
 
-		BaseTaro* taro = new BaseTaro{ 100, 100, TaroColor::Green, m_taroSprite};
-		taro->DrawSprite();
-	
+		for (size_t i = 0; i < m_currentTaro.size(); i++)
+		{
+			m_currentTaro[i]->DrawSprite();
+		}
+
 	}
 
 	void Application::EndPlay()
-	{}
+	{
+
+		m_currentTaro.clear();
+	}
 }

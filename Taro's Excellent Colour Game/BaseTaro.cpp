@@ -1,8 +1,12 @@
 #include "BaseTaro.h"
 
+#include <iostream>
+
 BaseTaro::BaseTaro(float x, float y, TaroColor taroColorIndex, Texture2D sprite)
 	: m_location{ x, y }, m_taroColorIndex{ taroColorIndex }, m_taroSprite{ sprite }
-{}
+{
+	DrawSprite();
+}
 
 BaseTaro::~BaseTaro() = default;
 
@@ -15,26 +19,30 @@ void BaseTaro::DrawSprite() const
 		case TaroColor::Red:
 		{
 			DrawTextureV(m_taroSprite, m_location, RED);
-			
 			break;
+		
 		}
 
 		case TaroColor::Yellow:
 		{
 			DrawTextureV(m_taroSprite, m_location, YELLOW);
 			break;
+	
 		}
 
 		case TaroColor::Blue:
 		{
 			DrawTextureV(m_taroSprite, m_location, BLUE);
 			break;
+			
 		}
 
 		case TaroColor::Green:
 		{
 			DrawTextureV(m_taroSprite, m_location, GREEN);
 			break;
+		
 		}
+
 	}
 }

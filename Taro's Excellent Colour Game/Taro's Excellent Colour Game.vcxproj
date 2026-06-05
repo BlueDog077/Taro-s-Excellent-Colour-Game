@@ -151,10 +151,7 @@
     <ClInclude Include="Stack.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Resources\TaroBallBlue.png" />
-    <Image Include="Resources\TaroBallGreen.png" />
     <Image Include="Resources\TaroBallNormal.png" />
-    <Image Include="Resources\TaroBallRed.png" />
     <Image Include="Resources\Vial.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
