@@ -69,7 +69,7 @@ namespace MathLibrary
 	void Application::Tick(float dt)
 	{
 
-		for (size_t i = m_currentTaro.size(); i < 15; i++)
+		for (size_t i = m_currentTaro.size(); i < m_taroMaxCount - m_vialCount; i++)
 		{
 			std::vector<TaroColor> randomColor =
 			{
@@ -109,10 +109,8 @@ namespace MathLibrary
 				BaseTaro* taro = new BaseTaro{ m_taroXPos + static_cast<float>(i - 10) * 100, m_taroYPos, chosenColor, m_taroSprite };
 				m_taroStack.Push(taro);
 				m_currentTaro.emplace_back(taro);
+				
 			}
-		
-		
-			
 		}
 
 	}
