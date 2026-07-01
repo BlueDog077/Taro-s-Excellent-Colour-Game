@@ -2,6 +2,7 @@
 #include <raylib.h>
 #include "Stack.h"
 #include <vector>
+#include "Vial.h"
 
 using std::vector;
 
@@ -27,9 +28,9 @@ namespace MathLibrary
 		bool m_running;
 		Color m_clearColor;
 
-		Texture2D m_vial;
-		int m_vialCount;
-		vector<Texture2D*> m_vialList;
+
+		int m_vialCount = 5;
+		vector<Vial*> m_vials;
 
 		//Taro
 		Texture2D m_taroSprite;

@@ -14,9 +14,7 @@ namespace MathLibrary
 	{}
 
 	Application::~Application()
-	{
-
-	}
+	{}
 
 	void Application::Run()
 	{
@@ -53,98 +51,51 @@ namespace MathLibrary
 
 	void Application::BeginPlay()
 	{
-		
-
-		//Setting up default values for the vial
-		m_vial = LoadTexture("Resources/Vial.png");
-		m_vialCount = 5;
-
-
-		//Loading Taro stuff
-		m_taroSprite = LoadTexture("Resources/TaroBallNormal.png");
-		m_taroMaxCount = 15;
-
-		m_taroXPos = 13;
-		m_taroYPos = 120;
-
 		for (int i = 0; i < m_vialCount; i++)
 		{
-			m_vialList.emplace_back(&m_vial);
+			Vial* vial = new Vial;
+			std::cout << "Vial " << i << ": " << vial->position.x << vial->position.y << "\n";
+			vial->position = { (50 * (float)i) * 2, -50 };
+			vial->Draw();
+			m_vials.emplace_back(vial);
+
 		}
-	
 	}
 
 	void Application::Tick(float dt)
 	{
-		
-		for (size_t i = m_currentTaro.size(); i < m_taroMaxCount; i++)
+
+		/*for (size_t i = m_currentTaro.size(); i < m_taroMaxCount; i++)
 		{
 			std::vector<TaroColor> randomColor =
 			{
 				TaroColor::Red,
-				TaroColor::Yellow, 
+				TaroColor::Yellow,
 				TaroColor::Blue,
 				TaroColor::Green
 			};
 
-			 static  std::random_device img;
+			 static std::random_device img;
 			 static std::mt19937 rng(img());
 
 			std::uniform_int_distribution<std::mt19937::result_type> dist(0, randomColor.size() - 1);
 			TaroColor chosenColor = randomColor[dist(rng)];
 
-			// Moving the taro's
-			if (m_currentTaro.size() < 5)
-			{
-				BaseTaro* taro = new BaseTaro{ m_taroXPos + static_cast<float>(i) * 100, m_taroYPos, chosenColor, m_taroSprite };
-				m_taroStack.Push(taro);
-				m_currentTaro.emplace_back(taro);
 
-			}
-			if (m_currentTaro.size() >= 5 && m_currentTaro.size() <= 10)
-			{
-				std::cout << m_vialList.size();
-
-				m_taroXPos = 13;
-				m_taroYPos = 60;
-
-				BaseTaro* taro = new BaseTaro{ m_taroXPos + static_cast<float>(i - 5) * 100, m_taroYPos, chosenColor, m_taroSprite };
-				m_taroStack.Push(taro);
-				m_currentTaro.emplace_back(taro);
-			}
-			if (m_currentTaro.size() > 10)
-			{
-				m_taroXPos = 13;
-				m_taroYPos = 0;
-
-		
-
-				BaseTaro* taro = new BaseTaro{ m_taroXPos + static_cast<float>(i - 10) * 100, m_taroYPos, chosenColor, m_taroSprite };
-				m_taroStack.Push(taro);
-				m_currentTaro.emplace_back(taro);
-				
-			}
-		}
+		}*/
 
 	}
 
 	void Application::Render()
 	{
-		float xOffset = 10.0f;
-		for (const auto &vial : m_vialList)
+		for (Vial* vial : m_vials)
 		{
-			DrawTextureV(*vial, { xOffset, -50.0f }, WHITE);
-			xOffset += 100.0f; // Move to the next position
-		}
-
-		for (size_t i = 0; i < m_currentTaro.size(); i++)
-		{
-			m_currentTaro[i]->DrawSprite();
+			vial->Draw();
 		}
 	}
 
 	void Application::EndPlay()
 	{
-		m_currentTaro.clear();
+		//m_currentTaro.clear();
 	}
 }

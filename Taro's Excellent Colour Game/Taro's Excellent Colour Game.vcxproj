@@ -149,6 +149,7 @@
     <ClInclude Include="Application.h" />
     <ClInclude Include="BaseTaro.h" />
     <ClInclude Include="Stack.h" />
+    <ClInclude Include="Vial.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\TaroBallNormal.png" />
