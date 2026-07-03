@@ -6,6 +6,10 @@
 
 using std::vector;
 
+//Max size a vial can have
+constexpr int MAX_VIAL_COUNT = 5;
+constexpr int MAX_TARO_COUNT = 4;
+
 class BaseTaro;
 namespace MathLibrary
 {
@@ -21,6 +25,7 @@ namespace MathLibrary
 		void Quit();
 
 	private:
+
 		int m_width;
 		int m_height;
 		const char* m_title;
@@ -28,20 +33,8 @@ namespace MathLibrary
 		bool m_running;
 		Color m_clearColor;
 
-
-		int m_vialCount = 5;
+		//Vials
 		vector<Vial*> m_vials;
-
-		//Taro
-		Texture2D m_taroSprite;
-		int m_taroMaxCount;
-		vector<BaseTaro*> m_currentTaro;
-
-		float m_taroXPos;
-		float m_taroYPos;
-
-		//Stack
-		Stack<BaseTaro*> m_taroStack;
 
 
 	private:

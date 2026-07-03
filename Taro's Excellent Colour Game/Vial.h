@@ -1,7 +1,7 @@
 
 #pragma once
 #include <raylib.h>
-#include "BaseTaro.h"
+#include "TaroBall.h"
 #include <vector>
 
 using std::vector;
@@ -12,42 +12,76 @@ public:
 	Vial();
 	~Vial();
 
+	void Init(Vector2 pos, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Texture2D tex);
 	//Returns true if completed, false otherwise.
 	bool isCompleted();
-	//Gets the Taro* at the top of the vial.
-	//Taro* Top();
 	void Draw();
 
-public:
-	int height;
-	int width;
-	Vector2 position;
+
 private:
-	//An vector of Taro pointers that represents how many taros currently in the vial. Maximum of 5.
-	vector<BaseTaro*> m_taroArray;
+	int m_width;
+	int m_height;
+	Vector2 m_position;
+
+	//Four specific points in the vial that indicate where a taro ball will be positioned.
+	//Different for each vial asit is relative to the vials position.
+	Vector2 m_point1;
+	Vector2 m_point2;
+	Vector2 m_point3;
+	Vector2 m_point4;
+
+	
 	//The vial's texture
 	Texture2D m_vialTexture;
+
+public:
 	//A bool to check if the vial has been completed
-	bool m_completed;
+	bool completed;
+	//Amount of taro balls in vial
+	int capacity;
+	//An vector of Taro pointers that represents how many taros currently in the vial. Maximum of 5.
+	vector<TaroBall*> taroArray;
 };
 
 //***************************** Definitions *********************************
 
 inline Vial::Vial()
-	: height{ 50 }, width{ 20 }, position{ 0, 0 }, m_taroArray{ nullptr }, m_vialTexture{ LoadTexture("Resources/Vial.png") }
+	: m_width{ 0 }, m_height{ 0 }, m_position{ 0, 0 }, m_point1 { 0, 0 }, m_point2{ 0,0 }, m_point3{ 0, 0 }, m_point4{ 0, 0 }, m_vialTexture{ }
 {}
 
 inline Vial::~Vial()
 {}
 
+inline void Vial::Init(Vector2 pos, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Texture2D tex)
+{
+	m_position = pos;
+	m_point1 = p1;
+	m_point2 = p2;
+	m_point3 = p3;
+	m_point4 = p4;
+	m_vialTexture = tex;
+
+	//Width and height vars of the vial are equal to the width & height of the texture image
+	m_width = tex.width;
+	m_height = tex.height;
+
+	
+}
+
 inline bool Vial::isCompleted()
 {
-	return m_completed;
+	return completed;
 }
 
 inline void Vial::Draw()
 {
-	DrawTexture(m_vialTexture, position.x, position.y, WHITE);
+	DrawTexture(m_vialTexture, m_position.x, m_position.y, WHITE);
+
+	//Temporary circles to see points positions
+	DrawCircle(m_point1.x, m_point1.y, 5.f, RED);
+	DrawCircle(m_point2.x, m_point2.y, 5.f, RED);
+	DrawCircle(m_point3.x, m_point3.y, 5.f, RED);
+	DrawCircle(m_point4.x, m_point4.y, 5.f, RED);
 }
 
 

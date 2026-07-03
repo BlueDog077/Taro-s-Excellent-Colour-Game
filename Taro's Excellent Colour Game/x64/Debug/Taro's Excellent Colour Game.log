@@ -1,19 +1,38 @@
 ﻿  Application.cpp
-C:\Users\s251412\Documents\git\Taro-s-Excellent-Colour-Game\Taro's Excellent Colour Game\Vial.h(50,49): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\s251412\Documents\git\Taro-s-Excellent-Colour-Game\Taro's Excellent Colour Game\TaroBall.h(42,53): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
   (compiling source file 'Application.cpp')
   
-C:\Users\s251412\Documents\git\Taro-s-Excellent-Colour-Game\Taro's Excellent Colour Game\Vial.h(50,37): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\s251412\Documents\git\Taro-s-Excellent-Colour-Game\Taro's Excellent Colour Game\TaroBall.h(42,39): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
   (compiling source file 'Application.cpp')
   
-  main.cpp
-C:\Users\s251412\Documents\git\Taro-s-Excellent-Colour-Game\Taro's Excellent Colour Game\Vial.h(50,49): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-  (compiling source file 'main.cpp')
+C:\Users\s251412\Documents\git\Taro-s-Excellent-Colour-Game\Taro's Excellent Colour Game\Vial.h(78,53): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  (compiling source file 'Application.cpp')
   
-C:\Users\s251412\Documents\git\Taro-s-Excellent-Colour-Game\Taro's Excellent Colour Game\Vial.h(50,37): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-  (compiling source file 'main.cpp')
+C:\Users\s251412\Documents\git\Taro-s-Excellent-Colour-Game\Taro's Excellent Colour Game\Vial.h(78,39): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  (compiling source file 'Application.cpp')
   
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\format(42): warning STL4038: The contents of <format> are available only with C++20 or later.
-  Generating Code...
-  LINK : C:\Users\s251412\Documents\git\Taro-s-Excellent-Colour-Game\Debug\Taro's Excellent Colour Game.exe not found or not built by the last incremental link; performing full link
-LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+C:\Users\s251412\Documents\git\Taro-s-Excellent-Colour-Game\Taro's Excellent Colour Game\Vial.h(81,33): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  (compiling source file 'Application.cpp')
+  
+C:\Users\s251412\Documents\git\Taro-s-Excellent-Colour-Game\Taro's Excellent Colour Game\Vial.h(81,21): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  (compiling source file 'Application.cpp')
+  
+C:\Users\s251412\Documents\git\Taro-s-Excellent-Colour-Game\Taro's Excellent Colour Game\Vial.h(82,33): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  (compiling source file 'Application.cpp')
+  
+C:\Users\s251412\Documents\git\Taro-s-Excellent-Colour-Game\Taro's Excellent Colour Game\Vial.h(82,21): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  (compiling source file 'Application.cpp')
+  
+C:\Users\s251412\Documents\git\Taro-s-Excellent-Colour-Game\Taro's Excellent Colour Game\Vial.h(83,33): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  (compiling source file 'Application.cpp')
+  
+C:\Users\s251412\Documents\git\Taro-s-Excellent-Colour-Game\Taro's Excellent Colour Game\Vial.h(83,21): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  (compiling source file 'Application.cpp')
+  
+C:\Users\s251412\Documents\git\Taro-s-Excellent-Colour-Game\Taro's Excellent Colour Game\Vial.h(84,33): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  (compiling source file 'Application.cpp')
+  
+C:\Users\s251412\Documents\git\Taro-s-Excellent-Colour-Game\Taro's Excellent Colour Game\Vial.h(84,21): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  (compiling source file 'Application.cpp')
+  
   Taro's Excellent Colour Game.vcxproj -> C:\Users\s251412\Documents\git\Taro-s-Excellent-Colour-Game\Debug\Taro's Excellent Colour Game.exe

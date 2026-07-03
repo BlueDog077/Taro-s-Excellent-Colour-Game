@@ -142,12 +142,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
-    <ClCompile Include="BaseTaro.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
-    <ClInclude Include="BaseTaro.h" />
+    <ClInclude Include="TaroBall.h" />
     <ClInclude Include="Stack.h" />
     <ClInclude Include="Vial.h" />
   </ItemGroup>

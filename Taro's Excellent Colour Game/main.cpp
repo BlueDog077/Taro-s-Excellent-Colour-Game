@@ -4,7 +4,7 @@
 
 int main()
 {
-	MathLibrary::Application* app = new MathLibrary::Application(720, 480, "TARO'S EXCELLENT COLOUR GAME", RAYWHITE);
+	MathLibrary::Application* app = new MathLibrary::Application(720, 480, "TARO'S EXCELLENT COLOUR GAME", BLACK);
 
 	app->Run();
 

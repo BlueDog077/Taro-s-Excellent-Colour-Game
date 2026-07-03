@@ -21,9 +21,6 @@
     <ClCompile Include="Application.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="BaseTaro.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -32,7 +29,7 @@
     <ClInclude Include="Stack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="BaseTaro.h">
+    <ClInclude Include="TaroBall.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Vial.h">
