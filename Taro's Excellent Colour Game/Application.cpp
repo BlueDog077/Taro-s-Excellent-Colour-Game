@@ -17,6 +17,9 @@ namespace MathLibrary
 
 	void Application::Run()
 	{
+		SetConfigFlags(FLAG_WINDOW_HIGHDPI);
+
+
 		InitWindow(m_width, m_height, m_title);
 
 		BeginPlay();
