@@ -53,7 +53,13 @@ inline Vial::Vial()
 {}
 
 inline Vial::~Vial()
-{}
+{
+	for (TaroBall* taro : taroArray)
+	{
+		delete taro;
+	}
+	taroArray.clear();
+}
 
 inline void Vial::Init(Vector2 pos, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Texture2D tex)
 {
@@ -68,7 +74,6 @@ inline void Vial::Init(Vector2 pos, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 
 	m_width = tex.width;
 	m_height = tex.height;
 
-	
 }
 
 inline bool Vial::isCompleted()

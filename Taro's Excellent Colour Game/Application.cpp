@@ -51,11 +51,10 @@ namespace MathLibrary
 
 	void Application::BeginPlay()
 	{
-		int z = 0;
 
 		//Loading textures
-		Texture2D vialTex = LoadTexture("Resources/Vial.png");
-		Texture2D taroTex = LoadTexture("Resources/TaroBallNormal.png");
+		m_vialTex = LoadTexture("Resources/Vial.png");
+		m_taroTex = LoadTexture("Resources/TaroBallNormal.png");
 
 		//********************************************* CREATING VIALS ***********************************************
 
@@ -70,12 +69,12 @@ namespace MathLibrary
 			//Initialising vials
 			vial->Init
 			(
-				vialPos,																//Base position of the vial
-				{ vialPos.x + vialTex.width/2, vialPos.y + vialTex.height - 20},		//First point (bottom of vial)
-				{ vialPos.x + vialTex.width / 2, vialPos.y + vialTex.height - 80 },		//Second point
-				{ vialPos.x + vialTex.width / 2, vialPos.y + vialTex.height - 140 },	//Third point
-				{ vialPos.x + vialTex.width / 2, vialPos.y + vialTex.height - 200},		//Fourth point (top of vial)
-				vialTex																	//Texture
+				vialPos,																	//Base position of the vial
+				{ vialPos.x + m_vialTex.width/2, vialPos.y + m_vialTex.height - 30},		//First point (bottom of vial)
+				{ vialPos.x + m_vialTex.width / 2, vialPos.y + m_vialTex.height - 90 },		//Second point
+				{ vialPos.x + m_vialTex.width / 2, vialPos.y + m_vialTex.height - 150 },	//Third point
+				{ vialPos.x + m_vialTex.width / 2, vialPos.y + m_vialTex.height - 210},		//Fourth point (top of vial)
+				m_vialTex																		//Texture
 			);
 
 			//Putting vial pointers into vector to be used later
@@ -86,43 +85,46 @@ namespace MathLibrary
 
 		//TODO: replace random color algorithm with the correct color formula later when i actually invent one bruhhh)
 	
-		//Choosing a random color
-			Color randomColor[4] =
-			{
-				RED,
-				YELLOW,
-				BLUE,
-				GREEN
-			};
-
-			static std::random_device img;
-			static std::mt19937 rng(img());
-
-			std::uniform_int_distribution<std::mt19937::result_type> dist(0, 3);
-			Color chosenColor = randomColor[dist(rng)];
-	
 			//Going through each vial
 			for (Vial* vial : m_vials)
 			{
-				//Creating a new taro object
-				TaroBall* taroBall = new TaroBall;
-
 				while (vial->capacity <= 3)
 				{
-					z++;
+
+					//Choosing a random color
+					Color randomColor[4] =
+					{
+						RED,
+						YELLOW,
+						BLUE,
+						GREEN
+					};
+
+					static std::random_device img;
+					static std::mt19937 rng(img());
+
+					std::uniform_int_distribution<std::mt19937::result_type> dist(0, 3);
+					Color chosenColor = randomColor[dist(rng)];
+
+
+					//Creating a new taro object
+					TaroBall* taroBall = new TaroBall;
+
+					Vector2 pos = vial->GetPoint(vial->capacity);
+
 					//Initialising taro
 					taroBall->Init
 					(
-						vial->GetPoint(vial->capacity),
+						//The position must subtract half the image width and height to centre it
+						{(pos.x - m_taroTex.width / 2), (pos.y - m_taroTex.height / 2)},
 						chosenColor,
-						taroTex
+						m_taroTex
 					);
 					//Pushing four taros to each vial.
 					vial->taroArray.emplace_back(taroBall);
 					vial->capacity++;
 				}
 			}
-		std::cout << z;
 		
 	}
 
@@ -134,7 +136,6 @@ namespace MathLibrary
 
 	void Application::Render()
 	{
-		int i = 0;
 		for (Vial* vial : m_vials)
 		{
 			vial->Draw();
@@ -142,13 +143,22 @@ namespace MathLibrary
 			for (TaroBall* taroBall : vial->taroArray)
 			{
 				taroBall->Draw();
-				i++;
+	
 			}
 		}
-		std::cout << i;
 	}
 
 	void Application::EndPlay()
 	{
+		//Deleting all vials from vector
+		for (Vial* vial : m_vials)
+		{
+			delete vial;
+		}
+		m_vials.clear();
+
+		//Unloading textures
+		UnloadTexture(m_taroTex);
+		UnloadTexture(m_vialTex);
 	}
 }

@@ -36,6 +36,10 @@ namespace MathLibrary
 		//Vials
 		vector<Vial*> m_vials;
 
+		//Textures
+		Texture2D m_vialTex;
+		Texture2D m_taroTex;
+
 
 	private:
 		void BeginPlay();

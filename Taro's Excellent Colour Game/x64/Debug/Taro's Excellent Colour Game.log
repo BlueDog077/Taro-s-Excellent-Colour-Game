@@ -5,34 +5,73 @@ C:\Users\bruno\OneDrive\Documents\PracticeGamesC++\Taro-s-Excellent-Colour-Game\
 C:\Users\bruno\OneDrive\Documents\PracticeGamesC++\Taro-s-Excellent-Colour-Game\Taro's Excellent Colour Game\TaroBall.h(42,39): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
   (compiling source file 'Application.cpp')
   
-C:\Users\bruno\OneDrive\Documents\PracticeGamesC++\Taro-s-Excellent-Colour-Game\Taro's Excellent Colour Game\Vial.h(105,53): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\bruno\OneDrive\Documents\PracticeGamesC++\Taro-s-Excellent-Colour-Game\Taro's Excellent Colour Game\Vial.h(110,53): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
   (compiling source file 'Application.cpp')
   
-C:\Users\bruno\OneDrive\Documents\PracticeGamesC++\Taro-s-Excellent-Colour-Game\Taro's Excellent Colour Game\Vial.h(105,39): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\bruno\OneDrive\Documents\PracticeGamesC++\Taro-s-Excellent-Colour-Game\Taro's Excellent Colour Game\Vial.h(110,39): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
   (compiling source file 'Application.cpp')
   
-C:\Users\bruno\OneDrive\Documents\PracticeGamesC++\Taro-s-Excellent-Colour-Game\Taro's Excellent Colour Game\Vial.h(108,33): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\bruno\OneDrive\Documents\PracticeGamesC++\Taro-s-Excellent-Colour-Game\Taro's Excellent Colour Game\Vial.h(113,33): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
   (compiling source file 'Application.cpp')
   
-C:\Users\bruno\OneDrive\Documents\PracticeGamesC++\Taro-s-Excellent-Colour-Game\Taro's Excellent Colour Game\Vial.h(108,21): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\bruno\OneDrive\Documents\PracticeGamesC++\Taro-s-Excellent-Colour-Game\Taro's Excellent Colour Game\Vial.h(113,21): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
   (compiling source file 'Application.cpp')
   
-C:\Users\bruno\OneDrive\Documents\PracticeGamesC++\Taro-s-Excellent-Colour-Game\Taro's Excellent Colour Game\Vial.h(109,33): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\bruno\OneDrive\Documents\PracticeGamesC++\Taro-s-Excellent-Colour-Game\Taro's Excellent Colour Game\Vial.h(114,33): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
   (compiling source file 'Application.cpp')
   
-C:\Users\bruno\OneDrive\Documents\PracticeGamesC++\Taro-s-Excellent-Colour-Game\Taro's Excellent Colour Game\Vial.h(109,21): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\bruno\OneDrive\Documents\PracticeGamesC++\Taro-s-Excellent-Colour-Game\Taro's Excellent Colour Game\Vial.h(114,21): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
   (compiling source file 'Application.cpp')
   
-C:\Users\bruno\OneDrive\Documents\PracticeGamesC++\Taro-s-Excellent-Colour-Game\Taro's Excellent Colour Game\Vial.h(110,33): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\bruno\OneDrive\Documents\PracticeGamesC++\Taro-s-Excellent-Colour-Game\Taro's Excellent Colour Game\Vial.h(115,33): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
   (compiling source file 'Application.cpp')
   
-C:\Users\bruno\OneDrive\Documents\PracticeGamesC++\Taro-s-Excellent-Colour-Game\Taro's Excellent Colour Game\Vial.h(110,21): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\bruno\OneDrive\Documents\PracticeGamesC++\Taro-s-Excellent-Colour-Game\Taro's Excellent Colour Game\Vial.h(115,21): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
   (compiling source file 'Application.cpp')
   
-C:\Users\bruno\OneDrive\Documents\PracticeGamesC++\Taro-s-Excellent-Colour-Game\Taro's Excellent Colour Game\Vial.h(111,33): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\bruno\OneDrive\Documents\PracticeGamesC++\Taro-s-Excellent-Colour-Game\Taro's Excellent Colour Game\Vial.h(116,33): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
   (compiling source file 'Application.cpp')
   
-C:\Users\bruno\OneDrive\Documents\PracticeGamesC++\Taro-s-Excellent-Colour-Game\Taro's Excellent Colour Game\Vial.h(111,21): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\bruno\OneDrive\Documents\PracticeGamesC++\Taro-s-Excellent-Colour-Game\Taro's Excellent Colour Game\Vial.h(116,21): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
   (compiling source file 'Application.cpp')
   
+  main.cpp
+C:\Users\bruno\OneDrive\Documents\PracticeGamesC++\Taro-s-Excellent-Colour-Game\Taro's Excellent Colour Game\TaroBall.h(42,53): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+  (compiling source file 'main.cpp')
+  
+C:\Users\bruno\OneDrive\Documents\PracticeGamesC++\Taro-s-Excellent-Colour-Game\Taro's Excellent Colour Game\TaroBall.h(42,39): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+  (compiling source file 'main.cpp')
+  
+C:\Users\bruno\OneDrive\Documents\PracticeGamesC++\Taro-s-Excellent-Colour-Game\Taro's Excellent Colour Game\Vial.h(110,53): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  (compiling source file 'main.cpp')
+  
+C:\Users\bruno\OneDrive\Documents\PracticeGamesC++\Taro-s-Excellent-Colour-Game\Taro's Excellent Colour Game\Vial.h(110,39): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  (compiling source file 'main.cpp')
+  
+C:\Users\bruno\OneDrive\Documents\PracticeGamesC++\Taro-s-Excellent-Colour-Game\Taro's Excellent Colour Game\Vial.h(113,33): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  (compiling source file 'main.cpp')
+  
+C:\Users\bruno\OneDrive\Documents\PracticeGamesC++\Taro-s-Excellent-Colour-Game\Taro's Excellent Colour Game\Vial.h(113,21): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  (compiling source file 'main.cpp')
+  
+C:\Users\bruno\OneDrive\Documents\PracticeGamesC++\Taro-s-Excellent-Colour-Game\Taro's Excellent Colour Game\Vial.h(114,33): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  (compiling source file 'main.cpp')
+  
+C:\Users\bruno\OneDrive\Documents\PracticeGamesC++\Taro-s-Excellent-Colour-Game\Taro's Excellent Colour Game\Vial.h(114,21): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  (compiling source file 'main.cpp')
+  
+C:\Users\bruno\OneDrive\Documents\PracticeGamesC++\Taro-s-Excellent-Colour-Game\Taro's Excellent Colour Game\Vial.h(115,33): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  (compiling source file 'main.cpp')
+  
+C:\Users\bruno\OneDrive\Documents\PracticeGamesC++\Taro-s-Excellent-Colour-Game\Taro's Excellent Colour Game\Vial.h(115,21): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  (compiling source file 'main.cpp')
+  
+C:\Users\bruno\OneDrive\Documents\PracticeGamesC++\Taro-s-Excellent-Colour-Game\Taro's Excellent Colour Game\Vial.h(116,33): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  (compiling source file 'main.cpp')
+  
+C:\Users\bruno\OneDrive\Documents\PracticeGamesC++\Taro-s-Excellent-Colour-Game\Taro's Excellent Colour Game\Vial.h(116,21): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  (compiling source file 'main.cpp')
+  
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\format(42): warning STL4038: The contents of <format> are available only with C++20 or later.
+  Generating Code...
   Taro's Excellent Colour Game.vcxproj -> C:\Users\bruno\OneDrive\Documents\PracticeGamesC++\Taro-s-Excellent-Colour-Game\Debug\Taro's Excellent Colour Game.exe
