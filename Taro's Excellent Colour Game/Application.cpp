@@ -17,9 +17,7 @@ namespace MathLibrary
 
 	void Application::Run()
 	{
-		SetConfigFlags(FLAG_WINDOW_HIGHDPI);
-
-
+		
 		InitWindow(m_width, m_height, m_title);
 
 		BeginPlay();
@@ -53,6 +51,8 @@ namespace MathLibrary
 
 	void Application::BeginPlay()
 	{
+		int z = 0;
+
 		//Loading textures
 		Texture2D vialTex = LoadTexture("Resources/Vial.png");
 		Texture2D taroTex = LoadTexture("Resources/TaroBallNormal.png");
@@ -84,10 +84,8 @@ namespace MathLibrary
 
 		//********************************************* CREATING TAROS ***********************************************
 
-		//Creates four taro balls for every vial 
-		for (int i = 0; i < (MAX_VIAL_COUNT * MAX_TARO_COUNT) - 2; i++)
-		{
-			//TODO: replace random color algorithm with the correct color formula later when i actually invent one bruhhh)
+		//TODO: replace random color algorithm with the correct color formula later when i actually invent one bruhhh)
+	
 		//Choosing a random color
 			Color randomColor[4] =
 			{
@@ -102,31 +100,29 @@ namespace MathLibrary
 
 			std::uniform_int_distribution<std::mt19937::result_type> dist(0, 3);
 			Color chosenColor = randomColor[dist(rng)];
-
-			//Creating a new taro object
-			TaroBall* taroBall = new TaroBall;
-
-			//TODO: Contain the taropos in a formula to ensure it aligns with each point in the vial.
-			Vector2 taroPos = { 50, 50 };
-
-			//Initialising taro
-			taroBall->Init
-			(
-				taroPos,
-				chosenColor,
-				taroTex
-			);
-
+	
 			//Going through each vial
 			for (Vial* vial : m_vials)
 			{
-				while (vial->capacity != 4)
+				//Creating a new taro object
+				TaroBall* taroBall = new TaroBall;
+
+				while (vial->capacity <= 3)
 				{
+					z++;
+					//Initialising taro
+					taroBall->Init
+					(
+						vial->GetPoint(vial->capacity),
+						chosenColor,
+						taroTex
+					);
+					//Pushing four taros to each vial.
 					vial->taroArray.emplace_back(taroBall);
 					vial->capacity++;
 				}
 			}
-		}
+		std::cout << z;
 		
 	}
 
@@ -138,16 +134,18 @@ namespace MathLibrary
 
 	void Application::Render()
 	{
+		int i = 0;
 		for (Vial* vial : m_vials)
 		{
 			vial->Draw();
-
+			
 			for (TaroBall* taroBall : vial->taroArray)
 			{
 				taroBall->Draw();
+				i++;
 			}
 		}
-		
+		std::cout << i;
 	}
 
 	void Application::EndPlay()

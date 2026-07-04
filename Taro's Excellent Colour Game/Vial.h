@@ -11,11 +11,14 @@ class Vial
 public:
 	Vial();
 	~Vial();
-
+	
 	void Init(Vector2 pos, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Texture2D tex);
 	//Returns true if completed, false otherwise.
 	bool isCompleted();
+	//Gets the specific point that the taro ball must draw to. Uses capacity as the deciding variable.
+	Vector2 GetPoint(int point);
 	void Draw();
+
 
 
 private:
@@ -71,6 +74,30 @@ inline void Vial::Init(Vector2 pos, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 
 inline bool Vial::isCompleted()
 {
 	return completed;
+}
+
+inline Vector2 Vial::GetPoint(int point)
+{
+	switch (point)
+	{
+		case 0:
+		{
+			return m_point1;
+		}
+		case 1:
+		{
+			return m_point2;
+		}
+		case 2:
+		{
+			return m_point3;
+		}
+		case 3:
+		{
+			return m_point4;
+		}
+	}
+	return Vector2();
 }
 
 inline void Vial::Draw()
