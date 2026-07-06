@@ -11,6 +11,7 @@ public:
 
 	void Init(Vector2 pos, Color color, Texture2D tex);
 	void Draw() const;
+	void SetPosition(Vector2 pos, float bufferX, float bufferY);
 
 private:
 	Vector2 m_position;
@@ -40,4 +41,9 @@ inline void TaroBall::Init(Vector2 pos, Color color, Texture2D tex)
 inline void TaroBall::Draw() const
 {
 	DrawTexture(m_taroTexture, m_position.x, m_position.y, m_color);
+}
+
+inline void TaroBall::SetPosition(Vector2 pos, float bufferX, float bufferY)
+{
+	m_position = {(pos.x - bufferX),(pos.y - bufferY)};
 }

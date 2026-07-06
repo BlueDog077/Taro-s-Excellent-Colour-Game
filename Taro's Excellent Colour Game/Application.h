@@ -36,6 +36,17 @@ namespace MathLibrary
 		//Vials
 		vector<Vial*> m_vials;
 
+		//****Taros*****
+		//Vector of all necessary taro balls neeeded for one round
+		vector<TaroBall*> m_taroPool;
+		//Array of possible colors
+		Color m_colors[4]{
+				RED,
+				YELLOW,
+				BLUE,
+				GREEN
+		};
+
 		//Textures
 		Texture2D m_vialTex;
 		Texture2D m_taroTex;

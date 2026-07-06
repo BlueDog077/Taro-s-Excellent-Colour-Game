@@ -3,8 +3,11 @@
 #include "TaroBall.h"
 #include <iostream>
 #include <raylib.h>
+#include <algorithm>
 #include <vector>
 #include <random>
+
+using std::random_shuffle;
 
 
 namespace MathLibrary
@@ -56,6 +59,10 @@ namespace MathLibrary
 		m_vialTex = LoadTexture("Resources/Vial.png");
 		m_taroTex = LoadTexture("Resources/TaroBallNormal.png");
 
+		//rng
+		static std::random_device img;
+		static std::mt19937 rng(img());
+
 		//********************************************* CREATING VIALS ***********************************************
 
 		for (int i = 0; i < MAX_VIAL_COUNT; i++)
@@ -83,54 +90,61 @@ namespace MathLibrary
 
 		//********************************************* CREATING TAROS ***********************************************
 
-		//TODO: replace random color algorithm with the correct color formula later when i actually invent one bruhhh)
-	
-			//Going through each vial
-			for (Vial* vial : m_vials)
+		//TODO: Make the empty vial a random one in the array
+		//Going through each vial except the last one
+		for (int i = 0; i < MAX_VIAL_COUNT - 1; i++)
+		{
+			std::uniform_int_distribution<std::mt19937::result_type> dist(0, 3);
+			Color chosenColor = m_colors[dist(rng)];
+
+			//Counter to help us create four taro balls for each of the four vials
+			int taroBallCounter = 0;
+
+			while (taroBallCounter <= 3)
 			{
-				while (vial->capacity <= 3)
-				{
+				taroBallCounter++;
+				//Creating a new taro object
+				TaroBall* taroBall = new TaroBall;
 
-					//Choosing a random color
-					Color randomColor[4] =
-					{
-						RED,
-						YELLOW,
-						BLUE,
-						GREEN
-					};
-
-					static std::random_device img;
-					static std::mt19937 rng(img());
-
-					std::uniform_int_distribution<std::mt19937::result_type> dist(0, 3);
-					Color chosenColor = randomColor[dist(rng)];
-
-
-					//Creating a new taro object
-					TaroBall* taroBall = new TaroBall;
-
-					Vector2 pos = vial->GetPoint(vial->capacity);
-
-					//Initialising taro
-					taroBall->Init
-					(
-						//The position must subtract half the image width and height to centre it
-						{(pos.x - m_taroTex.width / 2), (pos.y - m_taroTex.height / 2)},
-						chosenColor,
-						m_taroTex
-					);
-					//Pushing four taros to each vial.
-					vial->taroArray.emplace_back(taroBall);
-					vial->capacity++;
-				}
+				//Initialising taro
+				taroBall->Init
+				(
+					//Setting to 0,0 so that shuffle can correctly place taros in position
+					{0, 0},
+					chosenColor,
+					m_taroTex
+				);
+				//Adding taro to the pool to be shuffled 
+				m_taroPool.emplace_back(taroBall);
 			}
-		
+		}
+
+		std::shuffle(m_taroPool.begin(), m_taroPool.end(), rng);
+
+		int counter = 0;
+
+		for (int i = 0; i < MAX_VIAL_COUNT - 1; i++)
+		{
+			//Picking a random color from m_colors
+			std::uniform_int_distribution<std::mt19937::result_type> dist(0, 3);
+			Color chosenColor = m_colors[dist(rng)];
+
+			//While the capacity of the vial is not full
+			while (m_vials[i]->capacity <= 3)
+			{
+				//Pushing four taros to each vial.
+				Vector2 pos = (m_vials[i]->GetPoint(m_vials[i]->capacity));
+
+				m_taroPool[counter]->SetPosition(pos, m_taroTex.width / 2, m_taroTex.height / 2);
+				m_vials[i]->taroArray.emplace_back(m_taroPool[counter]);
+				m_vials[i]->capacity++;
+				counter++;
+			}
+		}
 	}
 
 	void Application::Tick(float dt)
 	{
-
 
 	}
 

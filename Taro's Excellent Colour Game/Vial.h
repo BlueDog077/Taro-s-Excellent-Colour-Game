@@ -32,24 +32,25 @@ private:
 	Vector2 m_point2;
 	Vector2 m_point3;
 	Vector2 m_point4;
-
 	
 	//The vial's texture
 	Texture2D m_vialTexture;
 
-public:
 	//A bool to check if the vial has been completed
-	bool completed;
-	//Amount of taro balls in vial
-	int capacity;
+	bool m_completed;
+
+
+public:
 	//An vector of Taro pointers that represents how many taros currently in the vial. Maximum of 5.
 	vector<TaroBall*> taroArray;
+	//Amount of taro balls in vial
+	int capacity;
 };
 
 //***************************** Definitions *********************************
 
 inline Vial::Vial()
-	: m_width{ 0 }, m_height{ 0 }, m_position{ 0, 0 }, m_point1 { 0, 0 }, m_point2{ 0,0 }, m_point3{ 0, 0 }, m_point4{ 0, 0 }, m_vialTexture{ }
+	: m_width{ 0 }, m_height{ 0 }, m_position{ 0, 0 }, m_point1{ 0, 0 }, m_point2{ 0,0 }, m_point3{ 0, 0 }, m_point4{ 0, 0 }, m_vialTexture{ }, m_completed{ false }
 {}
 
 inline Vial::~Vial()
@@ -78,7 +79,7 @@ inline void Vial::Init(Vector2 pos, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 
 
 inline bool Vial::isCompleted()
 {
-	return completed;
+	return m_completed;
 }
 
 inline Vector2 Vial::GetPoint(int point)
