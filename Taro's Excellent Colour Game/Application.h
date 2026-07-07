@@ -32,6 +32,8 @@ namespace MathLibrary
 		bool m_running;
 		Color m_clearColor;
 
+		bool m_toggle;
+
 		//Vials
 		vector<Vial*> m_vials;
 

@@ -15,6 +15,8 @@ public:
 	void Init(Vector2 pos, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Texture2D tex);
 	//Returns true if completed, false otherwise.
 	bool isCompleted();
+	//Gets the position of the vial
+	Vector2 GetPosition();
 	//Gets the specific point that the taro ball must draw to. Uses capacity as the deciding variable.
 	Vector2 GetPoint(int point);
 	void Draw();
@@ -80,6 +82,11 @@ inline void Vial::Init(Vector2 pos, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 
 inline bool Vial::isCompleted()
 {
 	return m_completed;
+}
+
+inline Vector2 Vial::GetPosition()
+{
+	return m_position;
 }
 
 inline Vector2 Vial::GetPoint(int point)

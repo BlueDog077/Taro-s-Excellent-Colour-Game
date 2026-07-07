@@ -156,7 +156,22 @@ namespace MathLibrary
 
 	void Application::Tick(float dt)
 	{
+		if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+		{
+			Vector2 clickPos = GetMousePosition();
 
+			if (m_toggle)
+			{
+				std::cout << "bye";
+				m_toggle = false;
+			}
+			else
+			{
+				m_toggle = true;
+				std::cout << "hi";
+			}
+		
+		}
 	}
 
 	void Application::Render()
