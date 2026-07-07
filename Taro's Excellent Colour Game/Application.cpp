@@ -90,8 +90,8 @@ namespace MathLibrary
 
 		//********************************************* CREATING TAROS ***********************************************
 
-		//TODO: Make the empty vial a random one in the array
-		//Going through each vial except the last one
+		
+		//Going through each vial - 1 (to generate enough taro balls for only four vials)
 		for (int i = 0; i < MAX_VIAL_COUNT - 1; i++)
 		{
 			std::uniform_int_distribution<std::mt19937::result_type> dist(0, 3);
@@ -119,12 +119,23 @@ namespace MathLibrary
 			}
 		}
 
+		//Choosing one of the five vials at random and clearing it before continuing to the taro ball creation logic
+		std::uniform_int_distribution<std::mt19937::result_type> dist(0, 4);
+		int emptyVial = dist(rng);
+		m_vials[1]->taroArray.clear();
+
 		std::shuffle(m_taroPool.begin(), m_taroPool.end(), rng);
 
 		int counter = 0;
 
-		for (int i = 0; i < MAX_VIAL_COUNT - 1; i++)
+		for (int i = 0; i < MAX_VIAL_COUNT; i++)
 		{
+			//Continue the loop if the current vial = the random vial cleared previously
+			//This is because this vial will remain empty and we only want 4 taro balls in 4 vials, not 5.
+			if (i == emptyVial)
+			{
+				continue;
+			}
 			//Picking a random color from m_colors
 			std::uniform_int_distribution<std::mt19937::result_type> dist(0, 3);
 			Color chosenColor = m_colors[dist(rng)];

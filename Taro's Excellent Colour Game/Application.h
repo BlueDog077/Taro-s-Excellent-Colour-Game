@@ -1,6 +1,5 @@
 #pragma once
 #include <raylib.h>
-#include "Stack.h"
 #include <vector>
 #include "Vial.h"
 
