@@ -59,6 +59,9 @@ namespace MathLibrary
 		m_vialTex = LoadTexture("Resources/Vial.png");
 		m_taroTex = LoadTexture("Resources/TaroBallNormal.png");
 
+		//Misc inits
+		m_selectedVial = nullptr;
+
 		//rng
 		static std::random_device img;
 		static std::mt19937 rng(img());
@@ -160,17 +163,37 @@ namespace MathLibrary
 		{
 			Vector2 clickPos = GetMousePosition();
 
-			if (m_toggle)
+			for (Vial* vial : m_vials)
 			{
-				std::cout << "bye";
-				m_toggle = false;
+				Rectangle vialArea = vial->GetArea();
+
+				//If the position is within the bounds of the rectangle/area of the vial
+				if ((vial != m_selectedVial) && (clickPos.x >= vialArea.x && clickPos.x <= (vialArea.x + vialArea.width) 
+					&& clickPos.y >= vialArea.y && clickPos.y <= (vialArea.y + vialArea.height)))
+				{
+					//If a vial has not already been selected/toggled
+					if (m_selectedVial == nullptr)
+					{
+						vial->SetToggled(true);
+						m_selectedVial = vial;
+
+						//Exit loop as a vial was found
+						break;
+					}
+					else
+					{
+						//LOGIC FOR MOVING TARO BALL TO NEXT VIAL GOES HERE
+						
+						//Set vial to untoggled and reset m_selected vial
+						m_selectedVial->SetToggled(false);
+						m_selectedVial = nullptr;
+					}
+					
+				}
 			}
-			else
-			{
-				m_toggle = true;
-				std::cout << "hi";
-			}
-		
+		/*	
+			
+			*/
 		}
 	}
 
@@ -179,6 +202,7 @@ namespace MathLibrary
 		for (Vial* vial : m_vials)
 		{
 			vial->Draw();
+			
 			
 			for (TaroBall* taroBall : vial->taroArray)
 			{

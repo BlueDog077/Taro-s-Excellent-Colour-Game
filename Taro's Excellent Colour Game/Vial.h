@@ -1,6 +1,7 @@
 
 #pragma once
 #include <raylib.h>
+#include <iostream>
 #include "TaroBall.h"
 #include <vector>
 
@@ -19,6 +20,14 @@ public:
 	Vector2 GetPosition();
 	//Gets the specific point that the taro ball must draw to. Uses capacity as the deciding variable.
 	Vector2 GetPoint(int point);
+	//Gets the area of the rectangle. Used for selecting specific vials
+	Rectangle GetArea();
+	//Returns true if a vial is toggled, false otherwise
+	bool IsToggled();
+	//Sets a vial to toggled/untoggled
+	void SetToggled(bool toggled);
+
+
 	void Draw();
 
 
@@ -34,12 +43,16 @@ private:
 	Vector2 m_point2;
 	Vector2 m_point3;
 	Vector2 m_point4;
+
+	Rectangle m_area;
 	
 	//The vial's texture
 	Texture2D m_vialTexture;
 
 	//A bool to check if the vial has been completed
 	bool m_completed;
+	//A bool to check if a vial has been toggled/selected
+	bool m_toggled;
 
 
 public:
@@ -52,7 +65,9 @@ public:
 //***************************** Definitions *********************************
 
 inline Vial::Vial()
-	: m_width{ 0 }, m_height{ 0 }, m_position{ 0, 0 }, m_point1{ 0, 0 }, m_point2{ 0,0 }, m_point3{ 0, 0 }, m_point4{ 0, 0 }, m_vialTexture{ }, m_completed{ false }
+	: m_width{ 0 }, m_height{ 0 }, m_position{ 0, 0 }, 
+	m_point1{ 0, 0 }, m_point2{ 0,0 }, m_point3{ 0, 0 }, m_point4{ 0, 0 },
+	m_vialTexture{ }, m_completed{ false }, m_toggled{ false }
 {}
 
 inline Vial::~Vial()
@@ -76,6 +91,15 @@ inline void Vial::Init(Vector2 pos, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 
 	//Width and height vars of the vial are equal to the width & height of the texture image
 	m_width = tex.width;
 	m_height = tex.height;
+
+	//Rectangle defining the area of a given vial
+	m_area = 
+	{
+			pos.x,
+			(pos.y),
+			(float)tex.width,
+			(float)tex.height 
+	};
 
 }
 
@@ -113,6 +137,21 @@ inline Vector2 Vial::GetPoint(int point)
 	return Vector2();
 }
 
+inline Rectangle Vial::GetArea()
+{
+	return m_area;
+}
+
+inline bool Vial::IsToggled()
+{
+	return m_toggled;
+}
+
+inline void Vial::SetToggled(bool toggled)
+{
+	m_toggled = toggled;
+}
+
 inline void Vial::Draw()
 {
 	DrawTexture(m_vialTexture, m_position.x, m_position.y, WHITE);
@@ -122,6 +161,7 @@ inline void Vial::Draw()
 	DrawCircle(m_point2.x, m_point2.y, 5.f, RED);
 	DrawCircle(m_point3.x, m_point3.y, 5.f, RED);
 	DrawCircle(m_point4.x, m_point4.y, 5.f, RED);
+
 }
 
 

@@ -35,7 +35,10 @@ namespace MathLibrary
 		bool m_toggle;
 
 		//Vials
+		//Vector of all five vials
 		vector<Vial*> m_vials;
+		//Stores the vial that has been clicked/selected
+		Vial* m_selectedVial;
 
 		//****Taros*****
 		//Vector of all necessary taro balls neeeded for one round
