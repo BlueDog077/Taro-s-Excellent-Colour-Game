@@ -12,13 +12,13 @@ public:
 	void Init(Vector2 pos, Color color, Texture2D tex);
 	void Draw() const;
 	void SetPosition(Vector2 pos, float bufferX, float bufferY);
+	void OffsetY(int offset);
 
 private:
 	Vector2 m_position;
 	Color m_color;
 	Texture2D m_taroTexture;
 
-	
 };
 
 /*************************************** Defining ***************************************/
@@ -46,4 +46,9 @@ inline void TaroBall::Draw() const
 inline void TaroBall::SetPosition(Vector2 pos, float bufferX, float bufferY)
 {
 	m_position = {(pos.x - bufferX),(pos.y - bufferY)};
+}
+
+inline void TaroBall::OffsetY(int offset)
+{
+	m_position.y -= offset;
 }

@@ -168,8 +168,8 @@ namespace MathLibrary
 				Rectangle vialArea = vial->GetArea();
 
 				//If the position is within the bounds of the rectangle/area of the vial
-				if ((vial != m_selectedVial) && (clickPos.x >= vialArea.x && clickPos.x <= (vialArea.x + vialArea.width) 
-					&& clickPos.y >= vialArea.y && clickPos.y <= (vialArea.y + vialArea.height)))
+				if (clickPos.x >= vialArea.x && clickPos.x <= (vialArea.x + vialArea.width) 
+					&& clickPos.y >= vialArea.y && clickPos.y <= (vialArea.y + vialArea.height))
 				{
 					//If a vial has not already been selected/toggled
 					if (m_selectedVial == nullptr)
@@ -182,9 +182,7 @@ namespace MathLibrary
 					}
 					else
 					{
-						//LOGIC FOR MOVING TARO BALL TO NEXT VIAL GOES HERE
-						
-						//Set vial to untoggled and reset m_selected vial
+						//TODO: LOGIC FOR MOVING TARO BALL TO NEXT VIAL GOES HERE
 						m_selectedVial->SetToggled(false);
 						m_selectedVial = nullptr;
 					}

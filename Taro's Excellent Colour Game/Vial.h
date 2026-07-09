@@ -24,7 +24,7 @@ public:
 	Rectangle GetArea();
 	//Returns true if a vial is toggled, false otherwise
 	bool IsToggled();
-	//Sets a vial to toggled/untoggled
+	//Sets a vial to toggled/untoggled and repositions its texture slightly
 	void SetToggled(bool toggled);
 
 
@@ -49,10 +49,13 @@ private:
 	//The vial's texture
 	Texture2D m_vialTexture;
 
+
 	//A bool to check if the vial has been completed
 	bool m_completed;
 	//A bool to check if a vial has been toggled/selected
 	bool m_toggled;
+	//Offset that defines how much the vial and its contents should move upwards by when toggled.
+	const int m_toggleOffset;
 
 
 public:
@@ -67,7 +70,7 @@ public:
 inline Vial::Vial()
 	: m_width{ 0 }, m_height{ 0 }, m_position{ 0, 0 }, 
 	m_point1{ 0, 0 }, m_point2{ 0,0 }, m_point3{ 0, 0 }, m_point4{ 0, 0 },
-	m_vialTexture{ }, m_completed{ false }, m_toggled{ false }
+	m_vialTexture{ }, m_toggleOffset{ 20 }, m_completed { false }, m_toggled{ false }
 {}
 
 inline Vial::~Vial()
@@ -150,6 +153,25 @@ inline bool Vial::IsToggled()
 inline void Vial::SetToggled(bool toggled)
 {
 	m_toggled = toggled;
+
+	if (m_toggled)
+	{
+		m_position.y -= m_toggleOffset;
+
+		for (TaroBall* taro : taroArray)
+		{
+			taro->OffsetY(m_toggleOffset);
+		}
+	}
+	else
+	{
+		m_position.y += m_toggleOffset;
+
+		for (TaroBall* taro : taroArray)
+		{
+			taro->OffsetY(-m_toggleOffset);
+		}
+	}
 }
 
 inline void Vial::Draw()
