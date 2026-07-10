@@ -9,14 +9,16 @@ public:
 	TaroBall();
 	~TaroBall();
 
-	void Init(Vector2 pos, Color color, Texture2D tex);
+	void Init(Vector2 pos, Color color, uint16_t colorId, Texture2D tex);
 	void Draw() const;
+	uint16_t GetColorId();
 	void SetPosition(Vector2 pos, float bufferX, float bufferY);
 	void OffsetY(int offset);
 
 private:
 	Vector2 m_position;
 	Color m_color;
+	uint16_t m_colorId;
 	Texture2D m_taroTexture;
 
 };
@@ -31,16 +33,22 @@ inline TaroBall::~TaroBall()
 {}
 
 
-inline void TaroBall::Init(Vector2 pos, Color color, Texture2D tex)
+inline void TaroBall::Init(Vector2 pos, Color color, uint16_t colorId, Texture2D tex)
 {
 	m_position = pos;
 	m_color = color;
 	m_taroTexture = tex;
+	m_colorId = colorId;
 }
 
 inline void TaroBall::Draw() const
 {
 	DrawTexture(m_taroTexture, m_position.x, m_position.y, m_color);
+}
+
+inline uint16_t TaroBall::GetColorId()
+{
+	return m_colorId;
 }
 
 inline void TaroBall::SetPosition(Vector2 pos, float bufferX, float bufferY)
