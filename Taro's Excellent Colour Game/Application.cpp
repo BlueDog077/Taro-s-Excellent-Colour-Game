@@ -98,8 +98,8 @@ namespace MathLibrary
 		for (int i = 0; i < MAX_VIAL_COUNT - 1; i++)
 		{
 			std::uniform_int_distribution<std::mt19937::result_type> dist(0, 3);
-
-			Color chosenColor = m_colors[dist(rng)];
+			int colorId = dist(rng);
+			Color chosenColor = m_colors[colorId];
 
 
 			//Counter to help us create four taro balls for each of the four vials
@@ -111,14 +111,13 @@ namespace MathLibrary
 				//Creating a new taro object
 				TaroBall* taroBall = new TaroBall;
 
-
 				//Initialising taro
 				taroBall->Init
 				(
 					//Setting to 0,0 so that shuffle can correctly place taros in position
 					{0, 0},
 					chosenColor,
-					0,					///NEED COLOR ID SOMEHWOW. THIS WILL; HELP US COMPARE THE TARO BALL COLORS TO ONE ANOTHER LATER USING THE IDS GIVEN
+					colorId,					///NEED COLOR ID SOMEHWOW. THIS WILL; HELP US COMPARE THE TARO BALL COLORS TO ONE ANOTHER LATER USING THE IDS GIVEN
 					m_taroTex
 				);
 				//Adding taro to the pool to be shuffled 
@@ -196,8 +195,8 @@ namespace MathLibrary
 						}
 
 						//Getting the taro at the top of the selected vial
-						TaroBall* movingTaro = m_selectedVial->taroArray.front();
-						std::cout << movingTaro->GetColorId();
+						TaroBall* movingTaro = m_selectedVial->taroArray.back();
+						//std::cout << movingTaro->GetColorId();
 
 						m_selectedVial->SetToggled(false);
 						m_selectedVial = nullptr;
