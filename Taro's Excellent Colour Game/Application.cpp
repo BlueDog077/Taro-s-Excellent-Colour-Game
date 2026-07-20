@@ -13,7 +13,7 @@ using std::random_shuffle;
 namespace MathLibrary
 {
 	Application::Application(const int width, const int height, const char* title, const Color clrColor)
-		: m_width{ width }, m_height{ height }, m_title{ title }, m_running{ true }, m_clearColor{ clrColor }
+		: m_width{ width }, m_height{ height }, m_title{ title }, m_running{ true }, m_clearColor{ clrColor }, m_roundWon { false }
 	{}
 
 	Application::~Application() = default;
@@ -62,12 +62,134 @@ namespace MathLibrary
 		//Misc inits
 		m_selectedVial = nullptr;
 
-		//rng
-		static std::random_device img;
-		static std::mt19937 rng(img());
+		InitVials();
+		InitTaros();
+	}
 
-		//********************************************* CREATING VIALS ***********************************************
 
+	void Application::Tick(float dt)
+	{
+		//Clicking & Interacting with the vials
+		if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+		{
+			Vector2 clickPos = GetMousePosition();
+
+			for (Vial* vial : m_vials)
+			{
+				Rectangle vialArea = vial->GetArea();
+
+				//If clickpos is within the bounds of the rectangle/area of the vial
+				if (clickPos.x >= vialArea.x && clickPos.x <= (vialArea.x + vialArea.width) 
+					&& clickPos.y >= vialArea.y && clickPos.y <= (vialArea.y + vialArea.height))
+				{
+					//If a vial has not already been selected/toggled
+					if (m_selectedVial == nullptr)
+					{
+						vial->SetToggled(true);
+						m_selectedVial = vial;
+
+						//Exiting entire loop as a new vial has been selected (no need for following logic)
+						break;
+					}
+
+					//Breaking out of the loop/toggle logic if the selected vial is empty, the same vial, or if either vial is complete
+					if (m_selectedVial->taroArray.empty() || vial == m_selectedVial
+						|| m_selectedVial->IsCompleted() || vial->IsCompleted() || vial->taroArray.size() == 4)
+						
+					{
+						m_selectedVial->SetToggled(false);
+						m_selectedVial = nullptr;
+
+						break;
+					}
+
+					else
+					{
+						//Getting the taro at the top of the selected vial
+						TaroBall* movingTaro = m_selectedVial->taroArray.back();
+
+						//Getting the point to move to based on the max size of the vials taro ball array
+						int pointToMove = MAX_TARO_COUNT - (MAX_TARO_COUNT - vial->taroArray.size());
+					
+						//Removing taroBall from selectedVial taroarray, and adding it to the target vial
+						m_selectedVial->taroArray.erase(std::remove(m_selectedVial->taroArray.begin(), m_selectedVial->taroArray.end(),
+															movingTaro), m_selectedVial->taroArray.end());
+
+						vial->taroArray.emplace_back(movingTaro);
+
+						movingTaro->SetPosition(vial->allPoints[pointToMove], m_taroTex.width / 2, m_taroTex.height / 2);
+					}
+					m_selectedVial->SetToggled(false);
+					m_selectedVial = nullptr;
+				}
+
+				//Vial Complete Logic
+				int completeCounter = 0;
+				TaroBall* prevTaro = nullptr;
+
+				for (TaroBall* taro : vial->taroArray)
+				{
+					if (prevTaro == nullptr || vial->IsCompleted())
+					{
+						prevTaro = taro;
+						continue;
+					}
+
+					if (taro->GetColorId() == prevTaro->GetColorId())
+					{
+						completeCounter++;
+						prevTaro = taro;
+					}
+				}
+
+				if (completeCounter == 3 )
+				{
+					vial->SetComplete();
+				}
+			}
+			WinCheck();
+		}
+
+		if (IsKeyPressed(KEY_ENTER) && m_roundWon == true)
+		{
+			//Deleting all vials from vector
+			for (Vial* vial : m_vials)
+			{
+				vial->taroArray.clear();
+				delete vial;
+			}
+			m_vials.clear();
+
+			m_selectedVial = nullptr;
+			m_roundWon = false;
+
+			InitVials();
+			InitTaros();
+		}
+	}
+
+
+	void Application::Render()
+	{
+		for (Vial* vial : m_vials)
+		{
+			vial->Draw();
+			
+			for (TaroBall* taroBall : vial->taroArray)
+			{
+				taroBall->Draw();
+	
+			}
+		}
+ 
+		if (m_roundWon == true)
+		{
+			DrawText("YOU WINNN MEWWWW MOWWWW", 20, 20, 40, RED);
+		}
+	}
+
+	void Application::InitVials()
+	{
 		for (int i = 0; i < MAX_VIAL_COUNT; i++)
 		{
 			//Creating a new vial object
@@ -80,27 +202,29 @@ namespace MathLibrary
 			vial->Init
 			(
 				vialPos,																	//Base position of the vial
-				{ vialPos.x + m_vialTex.width/2, vialPos.y + m_vialTex.height - 30},		//First point (bottom of vial)
+				{ vialPos.x + m_vialTex.width / 2, vialPos.y + m_vialTex.height - 30 },		//First point (bottom of vial)
 				{ vialPos.x + m_vialTex.width / 2, vialPos.y + m_vialTex.height - 90 },		//Second point
 				{ vialPos.x + m_vialTex.width / 2, vialPos.y + m_vialTex.height - 150 },	//Third point
-				{ vialPos.x + m_vialTex.width / 2, vialPos.y + m_vialTex.height - 210},		//Fourth point (top of vial)
+				{ vialPos.x + m_vialTex.width / 2, vialPos.y + m_vialTex.height - 210 },		//Fourth point (top of vial)
 				m_vialTex																		//Texture
 			);
 
 			//Putting vial pointers into vector to be used later
 			m_vials.emplace_back(vial);
-		}	
+		}
+	}
 
-		//********************************************* CREATING TAROS ***********************************************
+	void Application::InitTaros()
+	{
+		static std::random_device img;
+		static std::mt19937 rng(img());
 
-		
 		//Going through each vial - 1 (to generate enough taro balls for only four vials)
 		for (int i = 0; i < MAX_VIAL_COUNT - 1; i++)
 		{
 			std::uniform_int_distribution<std::mt19937::result_type> dist(0, 3);
 			int colorId = dist(rng);
 			Color chosenColor = m_colors[colorId];
-
 
 			//Counter to help us create four taro balls for each of the four vials
 			int taroBallCounter = 0;
@@ -115,7 +239,7 @@ namespace MathLibrary
 				taroBall->Init
 				(
 					//Setting to 0,0 so that shuffle can correctly place taros in position
-					{0, 0},
+					{ 0, 0 },
 					chosenColor,
 					colorId,					///NEED COLOR ID SOMEHWOW. THIS WILL; HELP US COMPARE THE TARO BALL COLORS TO ONE ANOTHER LATER USING THE IDS GIVEN
 					m_taroTex
@@ -128,12 +252,13 @@ namespace MathLibrary
 		//Choosing one of the five vials at random and clearing it before continuing to the taro ball creation logic
 		std::uniform_int_distribution<std::mt19937::result_type> dist(0, 4);
 		int emptyVial = dist(rng);
-		m_vials[1]->taroArray.clear();
+		m_vials[emptyVial]->taroArray.clear();
 
 		std::shuffle(m_taroPool.begin(), m_taroPool.end(), rng);
 
 		int counter = 0;
 
+		//Placing shuffled taroballs from pool into the four vials
 		for (int i = 0; i < MAX_VIAL_COUNT; i++)
 		{
 			//Continue the loop if the current vial = the random vial cleared previously
@@ -158,65 +283,24 @@ namespace MathLibrary
 				counter++;
 			}
 		}
+		m_taroPool.clear();
+
+		//Incase they won instantly when generated
+		WinCheck();
 	}
 
-	void Application::Tick(float dt)
+	void Application::WinCheck()
 	{
-		if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
-		{
-			Vector2 clickPos = GetMousePosition();
+		//Checking if win condition met
+		int vialsComplete = 0;
 
-			for (Vial* vial : m_vials)
-			{
-				Rectangle vialArea = vial->GetArea();
-
-				//If the position is within the bounds of the rectangle/area of the vial
-				if (clickPos.x >= vialArea.x && clickPos.x <= (vialArea.x + vialArea.width) 
-					&& clickPos.y >= vialArea.y && clickPos.y <= (vialArea.y + vialArea.height))
-				{
-					//If a vial has not already been selected/toggled
-					if (m_selectedVial == nullptr)
-					{
-						vial->SetToggled(true);
-						m_selectedVial = vial;
-
-						//Exit loop as a vial was found
-						break;
-					}
-					else
-					{
-						//TODO: LOGIC FOR MOVING TARO BALL TO NEXT VIAL GOES HERE
-						//Breaking out of the loop/toggle logic if the vial is empty
-						if (m_selectedVial->taroArray.empty())
-						{
-							m_selectedVial->SetToggled(false);
-							m_selectedVial = nullptr;
-							break;
-						}
-
-						//Getting the taro at the top of the selected vial
-						TaroBall* movingTaro = m_selectedVial->taroArray.back();
-						//std::cout << movingTaro->GetColorId();
-
-						m_selectedVial->SetToggled(false);
-						m_selectedVial = nullptr;
-					}
-				}
-			}
-		}
-	}
-
-	void Application::Render()
-	{
 		for (Vial* vial : m_vials)
 		{
-			vial->Draw();
-			
-			
-			for (TaroBall* taroBall : vial->taroArray)
+			vialsComplete += vial->IsCompleted();
+
+			if (vialsComplete == 4 && m_roundWon == false)
 			{
-				taroBall->Draw();
-	
+				m_roundWon = true;
 			}
 		}
 	}

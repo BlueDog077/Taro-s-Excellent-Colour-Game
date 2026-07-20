@@ -9,7 +9,6 @@ using std::vector;
 constexpr int MAX_VIAL_COUNT = 5;
 constexpr int MAX_TARO_COUNT = 4;
 
-class BaseTaro;
 namespace MathLibrary
 {
 
@@ -32,7 +31,7 @@ namespace MathLibrary
 		bool m_running;
 		Color m_clearColor;
 
-		bool m_toggle;
+		bool m_roundWon;
 
 		//Vials
 		//Vector of all five vials
@@ -41,7 +40,7 @@ namespace MathLibrary
 		Vial* m_selectedVial;
 
 		//****Taros*****
-		//Vector of all necessary taro balls neeeded for one round
+		//Vector of all necessary taro balls neeeded for one round. They are shuffled and pushed to individual vials
 		vector<TaroBall*> m_taroPool;
 		//Array of possible colors
 		Color m_colors[4]{
@@ -61,6 +60,11 @@ namespace MathLibrary
 
 		void Tick(float dt);
 		void Render();
+
+		void InitVials();
+		void InitTaros();
+
+		void WinCheck();
 
 		void EndPlay();
 

@@ -12,6 +12,7 @@ public:
 	void Init(Vector2 pos, Color color, uint16_t colorId, Texture2D tex);
 	void Draw() const;
 	uint16_t GetColorId();
+	Vector2 GetPosition();
 	void SetPosition(Vector2 pos, float bufferX, float bufferY);
 	void OffsetY(int offset);
 
@@ -49,6 +50,11 @@ inline void TaroBall::Draw() const
 inline uint16_t TaroBall::GetColorId()
 {
 	return m_colorId;
+}
+
+inline Vector2 TaroBall::GetPosition()
+{
+	return m_position;
 }
 
 inline void TaroBall::SetPosition(Vector2 pos, float bufferX, float bufferY)

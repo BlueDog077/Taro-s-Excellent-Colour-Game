@@ -14,8 +14,10 @@ public:
 	~Vial();
 	
 	void Init(Vector2 pos, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Texture2D tex);
+	//Sets vial to completed
+	void SetComplete();
 	//Returns true if completed, false otherwise.
-	bool isCompleted();
+	bool IsCompleted();
 	//Gets the position of the vial
 	Vector2 GetPosition();
 	//Gets the specific point that the taro ball must draw to. Uses capacity as the deciding variable.
@@ -27,22 +29,13 @@ public:
 	//Sets a vial to toggled/untoggled and repositions its texture slightly
 	void SetToggled(bool toggled);
 
-
 	void Draw();
-
 
 
 private:
 	int m_width;
 	int m_height;
 	Vector2 m_position;
-
-	//Four specific points in the vial that indicate where a taro ball will be positioned.
-	//Different for each vial asit is relative to the vials position.
-	Vector2 m_point1;
-	Vector2 m_point2;
-	Vector2 m_point3;
-	Vector2 m_point4;
 
 	Rectangle m_area;
 	
@@ -59,6 +52,8 @@ private:
 
 
 public:
+	//All points in each vial
+	vector<Vector2> allPoints;
 	//An vector of Taro pointers that represents how many taros currently in the vial. Maximum of 5.
 	vector<TaroBall*> taroArray;
 	//Amount of taro balls in vial
@@ -69,7 +64,6 @@ public:
 
 inline Vial::Vial()
 	: m_width{ 0 }, m_height{ 0 }, m_position{ 0, 0 }, 
-	m_point1{ 0, 0 }, m_point2{ 0,0 }, m_point3{ 0, 0 }, m_point4{ 0, 0 },
 	m_vialTexture{ }, m_toggleOffset{ 20 }, m_completed { false }, m_toggled{ false }
 {}
 
@@ -85,10 +79,13 @@ inline Vial::~Vial()
 inline void Vial::Init(Vector2 pos, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Texture2D tex)
 {
 	m_position = pos;
-	m_point1 = p1;
-	m_point2 = p2;
-	m_point3 = p3;
-	m_point4 = p4;
+
+	allPoints.emplace_back(p1);
+	allPoints.emplace_back(p2);
+	allPoints.emplace_back(p3);
+	allPoints.emplace_back(p4);
+
+	
 	m_vialTexture = tex;
 
 	//Width and height vars of the vial are equal to the width & height of the texture image
@@ -106,38 +103,20 @@ inline void Vial::Init(Vector2 pos, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 
 
 }
 
-inline bool Vial::isCompleted()
+inline void Vial::SetComplete()
+{
+	m_completed = true;
+}
+
+inline bool Vial::IsCompleted()
 {
 	return m_completed;
 }
 
-inline Vector2 Vial::GetPosition()
-{
-	return m_position;
-}
-
 inline Vector2 Vial::GetPoint(int point)
 {
-	switch (point)
-	{
-		case 0:
-		{
-			return m_point1;
-		}
-		case 1:
-		{
-			return m_point2;
-		}
-		case 2:
-		{
-			return m_point3;
-		}
-		case 3:
-		{
-			return m_point4;
-		}
-	}
-	return Vector2();
+	
+	return allPoints[point];
 }
 
 inline Rectangle Vial::GetArea()
@@ -179,10 +158,10 @@ inline void Vial::Draw()
 	DrawTexture(m_vialTexture, m_position.x, m_position.y, WHITE);
 
 	//Temporary circles to see points positions
-	DrawCircle(m_point1.x, m_point1.y, 5.f, RED);
-	DrawCircle(m_point2.x, m_point2.y, 5.f, RED);
-	DrawCircle(m_point3.x, m_point3.y, 5.f, RED);
-	DrawCircle(m_point4.x, m_point4.y, 5.f, RED);
+	for (Vector2 point : allPoints)
+	{
+		DrawCircle(point.x, point.y, 5.f, RED);
+	}
 
 }
 
