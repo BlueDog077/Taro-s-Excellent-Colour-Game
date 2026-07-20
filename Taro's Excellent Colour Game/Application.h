@@ -32,6 +32,7 @@ namespace MathLibrary
 		Color m_clearColor;
 
 		bool m_roundWon;
+		int m_wins;
 
 		//Vials
 		//Vector of all five vials
@@ -53,6 +54,7 @@ namespace MathLibrary
 		//Textures
 		Texture2D m_vialTex;
 		Texture2D m_taroTex;
+		Texture2D m_victoryTex;
 
 
 	private:

@@ -40,5 +40,8 @@
     <Image Include="Resources\TaroBallNormal.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="Resources\Victory.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

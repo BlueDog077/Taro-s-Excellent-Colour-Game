@@ -13,7 +13,7 @@ using std::random_shuffle;
 namespace MathLibrary
 {
 	Application::Application(const int width, const int height, const char* title, const Color clrColor)
-		: m_width{ width }, m_height{ height }, m_title{ title }, m_running{ true }, m_clearColor{ clrColor }, m_roundWon { false }
+		: m_width{ width }, m_height{ height }, m_title{ title }, m_running{ true }, m_clearColor{ clrColor }, m_roundWon { false }, m_wins{ 0 }
 	{}
 
 	Application::~Application() = default;
@@ -58,6 +58,7 @@ namespace MathLibrary
 		//Loading textures
 		m_vialTex = LoadTexture("Resources/Vial.png");
 		m_taroTex = LoadTexture("Resources/TaroBallNormal.png");
+		m_victoryTex = LoadTexture("Resources/Victory.png");
 
 		//Misc inits
 		m_selectedVial = nullptr;
@@ -171,6 +172,8 @@ namespace MathLibrary
 
 	void Application::Render()
 	{
+		DrawText(TextFormat("ROUNDS WON: %d", m_wins), 20, 20, 20, RED);
+
 		for (Vial* vial : m_vials)
 		{
 			vial->Draw();
@@ -184,7 +187,7 @@ namespace MathLibrary
  
 		if (m_roundWon == true)
 		{
-			DrawText("YOU WINNN MEWWWW MOWWWW", 20, 20, 40, RED);
+			DrawTexture(m_victoryTex, 100, 180, WHITE);
 		}
 	}
 
@@ -301,6 +304,7 @@ namespace MathLibrary
 			if (vialsComplete == 4 && m_roundWon == false)
 			{
 				m_roundWon = true;
+				m_wins++;
 			}
 		}
 	}
@@ -318,5 +322,6 @@ namespace MathLibrary
 		//Unloading textures
 		UnloadTexture(m_taroTex);
 		UnloadTexture(m_vialTex);
+		UnloadTexture(m_victoryTex);
 	}
 }

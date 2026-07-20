@@ -157,12 +157,12 @@ inline void Vial::Draw()
 {
 	DrawTexture(m_vialTexture, m_position.x, m_position.y, WHITE);
 
-	//Temporary circles to see points positions
+	/*
 	for (Vector2 point : allPoints)
 	{
 		DrawCircle(point.x, point.y, 5.f, RED);
 	}
-
+	*/
 }
 
 
